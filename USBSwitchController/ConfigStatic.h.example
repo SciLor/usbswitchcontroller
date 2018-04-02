@@ -1,0 +1,19 @@
+//Switch when already one USB-Input is active and the second one comes online
+//#define CFG_SWITCH_ON_SECOND_DEVICE
+
+//MQTT Control
+#define CFG_MQTT_ACTIVE
+#define CFG_HOSTNAME "USBSwitchController"
+#define CFG_WIFI_NAME "wifiname"
+#define CFG_WIFI_PASS "wifipass"
+#define CFG_MQTT_SERVER "192.168.0.222"
+#define CFG_MQTT_PORT 1883
+#define CFG_MQTT_NAME "mqttuser"
+#define CFG_MQTT_PASS "mqttpass"
+
+#define CFG_MQTT_TOPIC "usbswitch"
+#define CFG_MQTT_TOPIC_STATE_USB1 "usbswitch/state/usb1"
+#define CFG_MQTT_TOPIC_STATE_USB2 "usbswitch/state/usb2"
+#define CFG_MQTT_TOPIC_STATE_USBP "usbswitch/state/usbp"
+#define CFG_MQTT_TOPIC_STATE_SWITCH "usbswitch/state/switch"
+#define CFG_MQTT_TOPIC_COMMAND "usbswitch/cmd"
