@@ -28,6 +28,7 @@ int powerUSB1 = -1;
 int powerUSB2 = -1;
 int powerUSBP = -1;
 int lastState = -1;
+unsigned long lastSwitch;
 WiFiClient wifi;
 PubSubClient mqtt(wifi);
 
@@ -171,11 +172,16 @@ void doSwitch(int targetState) {
     currentState = getState();
   }
   if (currentState != targetState) {
-    Serial.print("currentState: ");
-    Serial.println(currentState);
-    Serial.print("targetState: ");
-    Serial.println(targetState);
-    switchState();
+    if (!isRecentlySwitched()) {
+      Serial.print("currentState: ");
+      Serial.println(currentState);
+      Serial.print("targetState: ");
+      Serial.println(targetState);
+      switchState();
+    } else {
+        Serial.println("State not switched, just switched...");
+        delay(100);
+    }
   }
 }
 void switchState() {
@@ -183,6 +189,14 @@ void switchState() {
   delay(50);
   digitalWrite(PIN_SWITCH, HIGH);
   delay(50);
+  lastSwitch = millis();
+}
+boolean isRecentlySwitched() {
+  unsigned long timeDiff = millis() - lastSwitch;
+  if (timeDiff > CFG_IDLE_AFTER_SWITCH_MS) {
+    return false;
+  }
+  return true;
 }
 
 int getState() {
