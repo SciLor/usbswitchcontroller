@@ -9,13 +9,6 @@
 #endif
 #include <PubSubClient.h>
 
-#define PIN_SWITCH D0
-#define PIN_USB1 D1
-#define PIN_USB2 D2
-#define PIN_USBP D7
-#define PIN_STATE1 D5
-#define PIN_STATE2 D6
-
 #define STATE_UNKNOWN 0
 #define STATE_USB1 1
 #define STATE_USB2 2
@@ -40,15 +33,15 @@ void setup() {
   Serial.begin(9600);
   Serial.println("setup");
   
-  pinMode(PIN_SWITCH, OUTPUT); 
+  pinMode(CFG_PIN_SWITCH, OUTPUT); 
   
-  pinMode(PIN_USB1, INPUT); 
-  pinMode(PIN_USB2, INPUT); 
-  pinMode(PIN_USBP, INPUT_PULLUP);
+  pinMode(CFG_PIN_USB1, INPUT); 
+  pinMode(CFG_PIN_USB2, INPUT); 
+  pinMode(CFG_PIN_USBP, INPUT_PULLUP);
    
-  pinMode(PIN_STATE1, INPUT); 
-  pinMode(PIN_STATE2, INPUT); 
-  digitalWrite(PIN_SWITCH, HIGH);
+  pinMode(CFG_PIN_STATE1, INPUT); 
+  pinMode(CFG_PIN_STATE2, INPUT); 
+  digitalWrite(CFG_PIN_SWITCH, HIGH);
   delay(500);
   
   WiFi.mode(WIFI_STA);
@@ -93,9 +86,9 @@ void connectIfNeeded() {
 }
 
 void loop() {
-  int usb1 = digitalRead(PIN_USB1);
-  int usb2 = digitalRead(PIN_USB2);
-  int usbp = digitalRead(PIN_USBP);
+  int usb1 = digitalRead(CFG_PIN_USB1);
+  int usb2 = digitalRead(CFG_PIN_USB2);
+  int usbp = digitalRead(CFG_PIN_USBP);
 
   char buffer[2];
   if (powerUSB1 != usb1) {
@@ -185,9 +178,9 @@ void doSwitch(int targetState) {
   }
 }
 void switchState() {
-  digitalWrite(PIN_SWITCH, LOW);
+  digitalWrite(CFG_PIN_SWITCH, LOW);
   delay(50);
-  digitalWrite(PIN_SWITCH, HIGH);
+  digitalWrite(CFG_PIN_SWITCH, HIGH);
   delay(50);
   lastSwitch = millis();
 }
@@ -200,8 +193,8 @@ boolean isRecentlySwitched() {
 }
 
 int getState() {
-  int state1 = digitalRead(PIN_STATE1);
-  int state2 = digitalRead(PIN_STATE2);
+  int state1 = digitalRead(CFG_PIN_STATE1);
+  int state2 = digitalRead(CFG_PIN_STATE2);
   int state = STATE_UNKNOWN;
 
   if (state1 == HIGH && state2 == LOW) {

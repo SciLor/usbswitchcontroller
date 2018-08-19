@@ -1,6 +1,14 @@
 //Switch when already one USB-Input is active and the second one comes online
 //#define CFG_SWITCH_ON_SECOND_DEVICE
 
+//PINs
+#define CFG_PIN_SWITCH D0
+#define CFG_PIN_USB1 D1
+#define CFG_PIN_USB2 D2
+#define CFG_PIN_USBP D7
+#define CFG_PIN_STATE1 D5
+#define CFG_PIN_STATE2 D6
+
 //MQTT Control
 #define CFG_MQTT_ACTIVE
 #define CFG_HOSTNAME "USBSwitchController"
@@ -18,4 +26,5 @@
 #define CFG_MQTT_TOPIC_STATE_SWITCH "usbswitch/state/switch"
 #define CFG_MQTT_TOPIC_COMMAND "usbswitch/cmd"
 
+//MISC
 #define CFG_IDLE_AFTER_SWITCH_MS 1000
