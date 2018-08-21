@@ -4,7 +4,7 @@ A basic implementation for the software side to make an usb switch automatically
 [ROLINE USB 3.0 Switch 14.01.2312](https://www.amazon.de/ROLINE-Switch-inkl-Kabel-Manuell/dp/B01N7FSTX3)
 
 ##Wiring
-Please don't forget a small resistor on D0 for the switch (>1000 ohms).
+Please don't forget a small resistor (>1000ohms should work) between the input lines D1, D2, D7, to prevent to much leakage as the ESP is 3.3V and the input lines are 5.0V.
 
 ![Attachment Points Hub](https://github.com/SciLor/usbswitchcontroller/blob/master/USBSwitchController/images/BoardAttachmentPoints.jpg?raw=true)
 ![Attachment Points Node](https://github.com/SciLor/usbswitchcontroller/blob/master/USBSwitchController/images/WiresAttachedNodeMcu.jpg?raw=true)
